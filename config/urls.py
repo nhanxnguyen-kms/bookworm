@@ -28,4 +28,5 @@ urlpatterns = [
         "swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"
     ),
     path("api/", include("config.api_router")),
+    path(r"api/auth/", include("knox.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

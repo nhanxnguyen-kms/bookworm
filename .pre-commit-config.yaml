@@ -29,6 +29,8 @@ repos:
     rev: 7.1.2
     hooks:
     -   id: flake8
+        args: [--config=.flake8]
+        additional_dependencies: [flake8-isort]
 
 -   repo: https://github.com/tox-dev/pyproject-fmt
     rev: "v2.5.1"
