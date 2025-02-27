@@ -1,0 +1,20 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# env
+*.env
+
+# data
+db.sqlite3
+covers/
+
+# JetBrains IDE
+.idea/

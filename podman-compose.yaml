@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:16.4
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bookworm
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/:Z
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6378:6379"
+    volumes:
+      - redis-data:/data
+
+  mailpit:
+    image: docker.io/axllent/mailpit:latest
+    container_name: mailpit
+    ports:
+      - "8025:8025"
+
+  # celery:
+  #   image: celery:latest
+  #   container_name: celery
+  #   command: celery -A bookworm worker --loglevel=info
+  #   environment:
+  #     - CELERY_BROKER_URL=redis://redis:6379/0
+  #     - CELERY_RESULT_BACKEND=redis://redis:6379/0
+  #   depends_on:
+  #     - redis
+  #     - postgres
+  #     - mailpit
+
+  # flower:
+  #   image: celery:latest
+  #   container_name: flower
+  #   command: flower -A bookworm --port=5555
+  #   ports:
+  #     - "5555:5555"
+  #   depends_on:
+  #     - celery
+
+volumes:
+  postgres-data:
+  redis-data:
